@@ -10,10 +10,10 @@ describe Ship do
 			expect(ship).not_to be_hit
 		end
 
-		xit 'can be hit' do
-			ship.receive_hit 
-			expect(ship).to be_hit
-		end
+		# xit 'can be hit' do
+		# 	ship.receive_hit 
+		# 	expect(ship).to be_hit
+		# end
 
 		it 'can be non-sunk' do
 			expect(ship).not_to be_sunk

@@ -28,8 +28,8 @@ class Ship
 	end
 
 	def receive_hit
-		damage
-		damage += 1
+		@damage = damage + 1
+		return become_sinkered if damage == size
 	end
 
 	def damage
