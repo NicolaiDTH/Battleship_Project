@@ -36,16 +36,18 @@ describe Ship do
 			expect{Ship.new(6)}.to raise_error RuntimeError
 		end
 
-		it 'will be sunk only when all her cells are hit' do
-			expect(ship).to receive(:become_sinkered)
+		it 'will be sunk when all her cells are hit' do
+			expect(ship).to receive(:sink)
 			ship.size.times {ship.receive_hit}
 		end
 
-		# it 'is sunk when hit' do
-		# 	ship.receive_hit
-		# 	expect(ship).to be_sunk
+		# it "will not be sunk when hit once" do
+		# 	expect(.not_to receive(:sink)
 		# end
-
+		
+		# it 'cannot take a hit on a hit cell' do
+		# 	expect(ship).to raise_error RuntimeError
+		# end
 
 
 	end

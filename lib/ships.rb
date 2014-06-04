@@ -11,8 +11,11 @@ patrol boat	2
 
 class Ship
 
+	attr_accessor :damage
+
 	def initialize(size)
 		raise "Ship must be 2-5 squares" if size < 2 or size > 5
+		@damage = 0
 		@size = size
 	end
 
@@ -29,13 +32,18 @@ class Ship
 	end
 
 	def receive_hit
-		@damage = damage + 1
-		return become_sinkered if damage == size
+		@damage += 1
+		sink if explodey
 	end
 
-	def damage
-		@damage ||= 0
+	def explodey
+		damage == size
 	end
+
+
+
+
+
 
 	
 
