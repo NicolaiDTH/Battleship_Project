@@ -44,7 +44,5 @@ class Ship
 		game_instance.ship_down
 	end
 
-		
-
 end
 

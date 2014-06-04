@@ -1,10 +1,8 @@
 require 'ships'
-require 'debugger'
 
 class Grid
 
 	def initialize
-		#debugger
 		10.times do 
 			board << [] 
 		end
@@ -19,24 +17,21 @@ class Grid
 		@board ||= []
 	end
 
-	def populate_1d(board)
-		10.times {board << []}
-	end
+	# def populate_1d(board)
+	# 	10.times {board << []}
+	# end
 
-	def populate_2d(board)
-		board.each {|row| populate_1d(row) }
-	end
+	# def populate_2d(board)
+	# 	board.each {|row| populate_1d(row) }
+	# end
 
 	def receive_shot(xcoord,ycoord)
 		if board[xcoord][ycoord].is_a? Ship
+			board[xcoord][ycoord].receive_hit
 			board[xcoord][ycoord] = :H
 		else 
 			board[xcoord][ycoord] = :M
 		end
-	end
-
-	def receive_hit(xcoord,ycoord)
-		board[xcoord][ycoord] = :H
 	end
 
 	def place_ship(xcoord,ycoord, ship)
