@@ -52,12 +52,11 @@ describe Ship do
 			ship.report_sink_to(game)
 			#expect game to receive summit when ship.sink = true, how this?  
 		end
-
+	end
+end
 
 		# it 'cannot take a hit on a hit cell' do
 		# 	expect(ship).to raise_error RuntimeError
 		# end
 
 
-	end
-end

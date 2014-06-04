@@ -43,7 +43,8 @@ class Ship
 	def report_sink_to(game_instance)
 		game_instance.ship_down
 	end
-	
+
+		
 
 end
 
