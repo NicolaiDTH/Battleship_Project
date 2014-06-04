@@ -34,13 +34,23 @@ class Grid
 		end
 	end
 
-	def place_ship(xcoord,ycoord, ship)
+	def place_ship_tile(xcoord,ycoord, ship)
 		board[xcoord][ycoord] = ship
 	end
 
 	def check_ship_size(ship)
 		ship.size
 	end
+
+	def orient_ship(xcoord1, ycoord1, xcoord2, ycoord2)
+		return :vertical if xcoord1 == xcoord2
+		return :horizontal if ycoord1 == ycoord2
+		:neither
+	end
+
+	# def place_ship(xcoord1, ycoord1, xcoord2, ycoord2, ship)
+	# 	place_ship_tile()
+	# end
 
 	def print_board
 		board.each {|row| puts row.to_s + "\n"}

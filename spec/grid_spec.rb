@@ -5,7 +5,7 @@ describe Grid do
 
 	let(:grid) { Grid.new }
 	let(:ship) {Ship.new(2)}
-	before(:each) { grid.place_ship(1,2, ship) }
+	before(:each) { grid.place_ship_tile(1,2, ship) }
 	let(:shot_test) { grid.receive_shot(1,2) }
 
 	context 'starts with' do
@@ -53,6 +53,10 @@ describe Grid do
 
 		it 'knows that a ship size equals cell size' do
 			expect(grid.check_ship_size(ship)).to eq ship.size
+		end
+
+		it 'checks whether two coordinates are on the same row, same column, or neither' do
+			expect(grid.orient_ship(0,0,1,0)).to eq :horizontal
 		end
 
 	end
