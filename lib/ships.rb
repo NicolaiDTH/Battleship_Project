@@ -6,7 +6,7 @@ submarine	3
 destroyer 3
 patrol boat	2
 =end
-test
+
 
 
 class Ship
