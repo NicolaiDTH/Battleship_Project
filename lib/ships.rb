@@ -33,18 +33,16 @@ class Ship
 
 	def receive_hit
 		@damage += 1
-		sink if explodey
+		sink if going_critical
 	end
 
-	def explodey
+	def going_critical
 		damage == size
 	end
 
-
-
-
-
-
+	def report_sink_to(game_instance)
+		game_instance.ship_down
+	end
 	
 
 end

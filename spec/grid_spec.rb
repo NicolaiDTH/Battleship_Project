@@ -17,8 +17,6 @@ describe Grid do
 		# end
 
 		it 'initializes with at least one row' do
-			puts "hello"
-			puts grid.board.length
 			expect(grid.board.length > 0).to eq(true)
 		end
 
