@@ -17,12 +17,13 @@ describe Grid do
 		# end
 
 		it 'initializes with at least one row' do
-			expect(grid.board.length > 0).to be_true
+			expect(grid.board.length > 0).to eq(true)
 		end
 
 		it 'initializes every row having 10 cells' do
-			expect(grid.board.all? {|row| row.length == 10}).to be_true
+			expect(grid.board.all? {|row| row.length == 10}).to eq(true)
 		end
+
 	end
 
 	context 'elements can have different states' do

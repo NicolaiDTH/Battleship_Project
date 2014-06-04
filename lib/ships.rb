@@ -6,13 +6,16 @@ submarine	3
 destroyer 3
 patrol boat	2
 =end
-test
+
 
 
 class Ship
 
+	attr_accessor :damage
+
 	def initialize(size)
 		raise "Ship must be 2-5 squares" if size < 2 or size > 5
+		@damage = 0
 		@size = size
 	end
 
@@ -29,14 +32,17 @@ class Ship
 	end
 
 	def receive_hit
-		@damage = damage + 1
-		return become_sinkered if damage == size
+		@damage += 1
+		sink if going_critical
 	end
 
-	def damage
-		@damage ||= 0
+	def going_critical
+		damage == size
 	end
 
+	def report_sink_to(game_instance)
+		game_instance.ship_down
+	end
 	
 
 end
