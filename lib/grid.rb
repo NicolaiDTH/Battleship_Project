@@ -38,6 +38,10 @@ class Grid
 		board[xcoord][ycoord] = ship
 	end
 
+	def check_ship_size(ship)
+		ship.size
+	end
+
 	def print_board
 		board.each {|row| puts row.to_s + "\n"}
 	end
