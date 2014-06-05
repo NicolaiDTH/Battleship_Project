@@ -1,29 +1,18 @@
-require_relative 'ships'
+require_relative 'ship'
 
 class Grid
 
 	def initialize
-		10.times do 
-			board << [] 
-		end
-		board.each do |r| 
-			10.times do
-				r << nil
-			end
-		end
+		build_grid
 	end
 
 	def board
 		@board ||= []
 	end
 
-	# def populate_1d(board)
-	# 	10.times {board << []}
-	# end
-
-	# def populate_2d(board)
-	# 	board.each {|row| populate_1d(row) }
-	# end
+	def build_grid
+		10.times { board << Array.new(10, nil) }
+	end
 
 	def receive_shot(xcoord,ycoord)
 		if board[xcoord][ycoord].is_a? Ship
@@ -33,12 +22,6 @@ class Grid
 			board[xcoord][ycoord] = :M
 		end
 	end
-
-	# def ship_orientation(ycoord1, xcoord1, ycoord2, xcoord2)
-	# 	return :vertical if xcoord1 == xcoord2
-	# 	return :horizontal if ycoord1 == ycoord2
-	# 	:neither
-	# end
 
 	def ship_number_of_tiles(ship)
 		ship.size

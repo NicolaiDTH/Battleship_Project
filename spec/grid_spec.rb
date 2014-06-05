@@ -1,6 +1,5 @@
 require 'grid'
-require 'ships'
-# require 'debugger'
+require 'ship'
 
 describe Grid do 
 
