@@ -40,6 +40,8 @@ describe Grid do
 			grid.place_ship(1,2, ship)
 			grid.receive_shot(1,2)
 			expect(grid.board[1][2]).to eq :H
+
+
 		end
 
 		it 'can tell a ship it is hit' do
