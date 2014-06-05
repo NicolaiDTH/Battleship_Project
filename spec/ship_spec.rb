@@ -5,19 +5,6 @@ describe Ship do
 	let (:ship) { Ship.new(2) }
 
 	context 'A ship' do
-		
-		it 'is not hit when instantiated' do
-			expect(ship).not_to be_hit
-		end
-
-		# xit 'can be hit' do
-		# 	ship.receive_hit 
-		# 	expect(ship).to be_hit
-		# end
-
-		it 'can be non-sunk' do
-			expect(ship).not_to be_sunk
-		end
 
 		it 'can be two elements long' do
 			expect(ship.size).to eq 2

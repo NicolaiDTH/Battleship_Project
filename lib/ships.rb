@@ -12,23 +12,12 @@ patrol boat	2
 class Ship
 
 	attr_accessor :damage
+	attr_reader :size
 
 	def initialize(size)
 		raise "Ship must be 2-5 squares" if size < 2 or size > 5
 		@damage = 0
 		@size = size
-	end
-
-	def hit?
-		@hit
-	end
-
-	def sunk?
-		false
-	end
-
-	def size
-		@size
 	end
 
 	def receive_hit

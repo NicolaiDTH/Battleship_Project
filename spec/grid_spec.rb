@@ -1,10 +1,13 @@
 require 'grid'
 require 'ships'
+require 'debugger'
 
 describe Grid do 
 
 	let(:grid) { Grid.new }
 	let(:ship) {Ship.new(2)}
+	before(:each) { grid.place_ship_tile(1,2, ship) }
+	let(:shot_test) { grid.receive_shot(1,2) }
 
 	context 'starts with' do
 	
@@ -32,30 +35,41 @@ describe Grid do
 		end
 
 		it 'can be non-hit ship' do
-			grid.place_ship(1,2, ship)
 			expect(grid.board[1][2]).to eq ship
 		end
 
 		it 'can be a hit ship' do
-			grid.place_ship(1,2, ship)
-			grid.receive_shot(1,2)
+			shot_test
 			expect(grid.board[1][2]).to eq :H
 
 
 		end
 
 		it 'can tell a ship it is hit' do
-			grid.place_ship(1,2, ship)
 			expect(ship).to receive(:receive_hit) 
-			grid.receive_shot(1,2)
+			shot_test 
 		end
 
 	end
 
-	context 'that grid can accept ships' do
+	context 'grid can place ships' do
 
 		it 'knows that a ship size equals cell size' do
 			expect(grid.check_ship_size(ship)).to eq ship.size
+		end
+
+		it 'checks whether two coordinates are on the same row, same column, or neither' do
+			expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
+		end
+
+		it 'places a ship along a vertical axis when the first xcoord is < the second' do
+			titanic = Ship.new(5)
+			grid.place_whole_ship(0, 0, 4, 0, titanic)
+			expect(grid.board[0][0]).to eq titanic
+			expect(grid.board[1][0]).to eq titanic
+			expect(grid.board[2][0]).to eq titanic
+			expect(grid.board[3][0]).to eq titanic
+			expect(grid.board[4][0]).to eq titanic
 		end
 
 	end
