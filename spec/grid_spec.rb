@@ -1,6 +1,6 @@
 require 'grid'
 require 'ships'
-require 'debugger'
+# require 'debugger'
 
 describe Grid do 
 
@@ -55,16 +55,16 @@ describe Grid do
 	context 'grid can place ships' do
 
 		it 'knows that a ship size equals cell size' do
-			expect(grid.check_ship_size(ship)).to eq ship.size
+			expect(grid.ship_number_of_tiles(ship)).to eq ship.size
 		end
 
-		it 'checks whether two coordinates are on the same row, same column, or neither' do
-			expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
-		end
+		# it 'checks whether two coordinates are on the same row, same column, or neither' do
+		# 	expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
+		# end
 
-		it 'places a ship along a vertical axis when the first xcoord is < the second' do
+		it 'places a ship either vertically or horizontally (up>down or left>right) on the right no. of tiles' do
 			titanic = Ship.new(5)
-			grid.place_whole_ship(0, 0, 4, 0, titanic)
+			grid.place_whole_ship(0, 0, "vertical", titanic)
 			expect(grid.board[0][0]).to eq titanic
 			expect(grid.board[1][0]).to eq titanic
 			expect(grid.board[2][0]).to eq titanic

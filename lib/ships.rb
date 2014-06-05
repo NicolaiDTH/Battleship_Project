@@ -1,10 +1,10 @@
 =begin
 Type of ship	Size
-aircraft carrier	5
-battleship	4
-submarine	3
-destroyer 3
-patrol boat	2
+costa concordia (2)
+titanic (269m)	4
+rms lusitania (239m)	3
+uss thresher (85m)		3
+mary rose (32m)	2
 =end
 
 

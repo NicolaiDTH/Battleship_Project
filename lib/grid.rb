@@ -1,4 +1,4 @@
-require 'ships'
+require_relative 'ships'
 
 class Grid
 
@@ -34,29 +34,30 @@ class Grid
 		end
 	end
 
-	def place_ship_tile(xcoord,ycoord, ship)
-		board[xcoord][ycoord] = ship
-	end
+	# def ship_orientation(ycoord1, xcoord1, ycoord2, xcoord2)
+	# 	return :vertical if xcoord1 == xcoord2
+	# 	return :horizontal if ycoord1 == ycoord2
+	# 	:neither
+	# end
 
-	def check_ship_size(ship)
+	def ship_number_of_tiles(ship)
 		ship.size
 	end
 
-	def ship_orientation(xcoord1, ycoord1, xcoord2, ycoord2)
-		return :horizontal if xcoord1 == xcoord2
-		return :vertical if ycoord1 == ycoord2
-		:neither
+	def place_whole_ship(ycoord, xcoord, orientation, ship)
+# given 0,0, vertical and titanic we change cell state to titanic
+		if orientation == "vertical"
+			# means differing y ycoords
+			ship_start = ycoord
+			ship_end = ycoord + ship_number_of_tiles(ship) 
+			(ship_start...ship_end).each {|ycoord| place_ship_tile(ycoord, xcoord, ship)}
+		else
+
+		end
 	end
 
-	def place_whole_ship(xcoord1, ycoord1, xcoord2, ycoord2, ship)
-		if ship_orientation(xcoord1, ycoord1, xcoord2, ycoord2) == :vertical 
-			place_along_line(xcoord1,xcoord2, ycoord1, ship)
-		else
-			place_along_line(ycoord1,ycoord2, xcoord1, ship)
-		
-			# (ycoord1..ycoord2).to_a.sort.each
-			# place_ship_tile(xcoord1, ycoord1, ship)
-		end
+	def place_ship_tile(xcoord,ycoord, ship)
+		board[xcoord][ycoord] = ship
 	end
 
 	def place_along_line(coord1, coord2, axis2, ship)
@@ -65,19 +66,12 @@ class Grid
 
 	def print_board
 		board.each {|row| puts row.to_s + "\n"}
+		puts
 	end
 
 	# lay_down_tiles = Proc.new {|axis1| place_ship_tile(axis1, axis2, ship) }
 
 end	
 
-# Grid.new.print_board
 
-# Perl was the first language to use it. Groovy is another language that supports it. Basically instead of returning 1 (true) or 0 (false) depending on whether the arguments are equal or unequal, the spaceship operator will return 1, 0, or −1 depending on the value of the left argument relative to the right argument.
-
-# a <=> b :=
-#   if a < b then return -1
-#   if a = b then return  0
-#   if a > b then return  1
-# It's useful for sorting an array.
 
