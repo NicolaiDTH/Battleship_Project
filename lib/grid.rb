@@ -51,10 +51,12 @@ class Grid
 	def place_whole_ship(xcoord1, ycoord1, xcoord2, ycoord2, ship)
 		if ship_orientation(xcoord1, ycoord1, xcoord2, ycoord2) == :vertical 
 			place_along_line(xcoord1,xcoord2, ycoord1, ship)
-
-		end
+		else
+			place_along_line(ycoord1,ycoord2, xcoord1, ship)
+		
 			# (ycoord1..ycoord2).to_a.sort.each
 			# place_ship_tile(xcoord1, ycoord1, ship)
+		end
 	end
 
 	def place_along_line(coord1, coord2, axis2, ship)
@@ -64,6 +66,8 @@ class Grid
 	def print_board
 		board.each {|row| puts row.to_s + "\n"}
 	end
+
+	# lay_down_tiles = Proc.new {|axis1| place_ship_tile(axis1, axis2, ship) }
 
 end	
 

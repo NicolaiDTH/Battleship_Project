@@ -60,11 +60,11 @@ describe Grid do
 			expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
 		end
 
-		it 'places a ship along a horizontal axis when the first xcoord is < the second' do
+		it 'places a ship along a vertical axis when the first xcoord is < the second' do
 			titanic = Ship.new(5)
 			grid.place_whole_ship(0, 0, 4, 0, titanic)
 			expect(grid.board[0][0]).to eq titanic
-			expect(grid.board[0][0]).to eq titanic
+			expect(grid.board[1][0]).to eq titanic
 			expect(grid.board[2][0]).to eq titanic
 			expect(grid.board[3][0]).to eq titanic
 			expect(grid.board[4][0]).to eq titanic
