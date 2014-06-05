@@ -42,15 +42,24 @@ class Grid
 		ship.size
 	end
 
-	def orient_ship(xcoord1, ycoord1, xcoord2, ycoord2)
-		return :vertical if xcoord1 == xcoord2
-		return :horizontal if ycoord1 == ycoord2
+	def ship_orientation(xcoord1, ycoord1, xcoord2, ycoord2)
+		return :horizontal if xcoord1 == xcoord2
+		return :vertical if ycoord1 == ycoord2
 		:neither
 	end
 
-	# def place_ship(xcoord1, ycoord1, xcoord2, ycoord2, ship)
-	# 	place_ship_tile()
-	# end
+	def place_whole_ship(xcoord1, ycoord1, xcoord2, ycoord2, ship)
+		if ship_orientation(xcoord1, ycoord1, xcoord2, ycoord2) == :vertical 
+			place_along_line(xcoord1,xcoord2, ycoord1, ship)
+
+		end
+			# (ycoord1..ycoord2).to_a.sort.each
+			# place_ship_tile(xcoord1, ycoord1, ship)
+	end
+
+	def place_along_line(coord1, coord2, axis2, ship)
+		coord1.upto(coord2) {|axis1| place_ship_tile(axis1, axis2, ship) }
+	end
 
 	def print_board
 		board.each {|row| puts row.to_s + "\n"}
@@ -59,3 +68,12 @@ class Grid
 end	
 
 # Grid.new.print_board
+
+# Perl was the first language to use it. Groovy is another language that supports it. Basically instead of returning 1 (true) or 0 (false) depending on whether the arguments are equal or unequal, the spaceship operator will return 1, 0, or −1 depending on the value of the left argument relative to the right argument.
+
+# a <=> b :=
+#   if a < b then return -1
+#   if a = b then return  0
+#   if a > b then return  1
+# It's useful for sorting an array.
+
