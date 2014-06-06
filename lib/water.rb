@@ -1,18 +1,20 @@
 class Water
 
 	def initialize
-		@calm = true
+		@hit = false
 	end
 
-	def calm?
-		@calm == true
+	def hit?
+		@hit == true
 	end
 
 	def receive_hit
-		@calm = false
+		@hit = true
 	end
 
 	def to_s
-		"~"
+		return "~" unless hit?
+		"*"
 	end
+
 end
