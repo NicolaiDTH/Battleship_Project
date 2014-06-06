@@ -5,7 +5,7 @@ describe Grid do
 
 	let(:grid) { Grid.new }
 	let(:ship) {Ship.new(2)}
-	before(:each) { grid.place_ship_tile(1,2, ship) }
+	before(:each) { grid.board[1][2].place_ship!(ship) }
 	let(:shot_test) { grid.receive_shot(1,2) }
 
 	context 'starts with' do
@@ -25,7 +25,7 @@ describe Grid do
 	context 'cells can have different states' do
 
 		it 'can be non-hit non-ship' do
-			expect(grid.board[0][9]).to eq nil
+			expect(grid.board[0][9].class).to eq Cell
 		end	
 
 		it 'can be hit non-ship' do
@@ -46,7 +46,7 @@ describe Grid do
 
 		it 'can tell a ship it is hit' do
 			expect(ship).to receive(:receive_hit) 
-			shot_test 
+			grid.board[1][2].occupant.receive_hit
 		end
 
 	end
@@ -64,13 +64,12 @@ describe Grid do
 		it 'places a ship either vertically or horizontally (up>down or left>right) on the right no. of tiles' do
 			titanic = Ship.new(5)
 			grid.place_whole_ship(0, 0, "vertical", titanic)
-			expect(grid.board[0][0]).to eq titanic
-			expect(grid.board[1][0]).to eq titanic
-			expect(grid.board[2][0]).to eq titanic
-			expect(grid.board[3][0]).to eq titanic
-			expect(grid.board[4][0]).to eq titanic
+			expect(grid.board[0][0].occupant.class).to eq Ship
+			expect(grid.board[1][0].occupant.class).to eq Ship
+			expect(grid.board[2][0].occupant.class).to eq Ship
+			expect(grid.board[3][0].occupant.class).to eq Ship
+			expect(grid.board[4][0].occupant.class).to eq Ship
 		end
-
 	end
 
 # context 'ships cannot occupy the same space' do

@@ -1,19 +1,19 @@
 class Cell
 
 	def initialize
-		@status = :empty
+		@occupant = :empty
 	end
 
-	def status
-		@status
+	def occupant
+		@occupant
 	end
 
 	def place_ship!(ship)
-		@status = ship
+		@occupant = ship
 	end
 
 	def place_water!(water)
-		@status = water
+		@occupant = water
 	end
 
 
