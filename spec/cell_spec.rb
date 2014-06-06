@@ -5,10 +5,6 @@ describe Cell do
 
 	let(:cell) {Cell.new}
 
-	it 'should be empty when initialized' do
-		expect(cell.status).to eq :empty
-	end
-
 	it 'should be able to hold a ship' do
 		ship = double :ship
 		cell.place_ship!(ship)

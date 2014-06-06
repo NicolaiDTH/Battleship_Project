@@ -32,5 +32,9 @@ class Ship
 		game_instance.ship_down
 	end
 
+	def hit?
+		@damage > 0
+	end
+
 end
 

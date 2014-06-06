@@ -5,8 +5,7 @@ describe Grid do
 
 	let(:grid) { Grid.new }
 	let(:ship) {Ship.new(2)}
-	before(:each) { grid.board[1][2].place_ship!(ship) }
-	let(:shot_test) { grid.receive_shot(1,2) }
+	before(:each) { grid.place_ship_tile(1,2, ship) }
 
 	context 'starts with' do
 	
@@ -24,31 +23,37 @@ describe Grid do
 	end
 	context 'cells can have different states' do
 
-		it 'can be non-hit non-ship' do
-			expect(grid.board[0][9].class).to eq Cell
+		it 'can just have water' do
+			expect(grid.board[0][9]).to have_water
+			expect(grid.board[0][9]).not_to have_ship
+			expect(grid.board[0][9]).not_to have_been_hit
 		end	
 
-		it 'can be hit non-ship' do
+		it 'can have hit water' do
 			grid.receive_shot(0,9)
-			expect(grid.board[0][9]).to eq :M
+			expect(grid.board[0][9]).to have_water
+			expect(grid.board[0][9]).to have_been_hit
+			expect(grid.board[0][9]).not_to have_ship
 		end
 
-		it 'can be non-hit ship' do
-			expect(grid.board[1][2]).to eq ship
+		it 'can have ship' do
+			expect(grid.board[1][2]).to have_ship
+			expect(grid.board[1][2]).not_to have_water
+			expect(grid.board[1][2]).not_to have_been_hit
 		end
 
-		it 'can be a hit ship' do
-			shot_test
-			expect(grid.board[1][2]).to eq :H
-
-
+		it 'can have a hit ship' do
+			grid.receive_shot(1,2)
+			expect(grid.board[1][2]).to have_ship
+			expect(grid.board[1][2]).to have_been_hit
+			expect(grid.board[1][2]).not_to have_water
 		end
 
 		it 'can tell a ship it is hit' do
 			expect(ship).to receive(:receive_hit) 
-			grid.board[1][2].occupant.receive_hit
+			# grid.board[1][2].occupant.receive_hit
+			grid.receive_shot(1,2)
 		end
-
 	end
 
 	context 'grid can place ships' do
@@ -61,7 +66,7 @@ describe Grid do
 		# 	expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
 		# end
 
-		it 'places a ship either vertically or horizontally (up>down or left>right) on the right no. of tiles' do
+		xit 'places a ship either vertically or horizontally (up>down or left>right) on the right no. of tiles' do
 			titanic = Ship.new(5)
 			grid.place_whole_ship(0, 0, "vertical", titanic)
 			expect(grid.board[0][0].occupant.class).to eq Ship
