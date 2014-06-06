@@ -1,4 +1,5 @@
 require_relative 'ship'
+require_relative 'cell'
 
 class Grid
 
@@ -11,16 +12,11 @@ class Grid
 	end
 
 	def build_grid
-		10.times { board << Array.new(10, nil) }
+		10.times { board << Array.new(10, Cell.new) }
 	end
 
 	def receive_shot(xcoord,ycoord)
-		if board[xcoord][ycoord].is_a? Ship
-			board[xcoord][ycoord].receive_hit
-			board[xcoord][ycoord] = :H
-		else 
-			board[xcoord][ycoord] = :M
-		end
+		board[xcoord][ycoord].receive_hit
 	end
 
 	def ship_number_of_tiles(ship)
@@ -40,7 +36,7 @@ class Grid
 	end
 
 	def place_ship_tile(xcoord,ycoord, ship)
-		board[xcoord][ycoord] = ship
+		board[xcoord][ycoord].place_ship!(ship)
 	end
 
 	def place_along_line(coord1, coord2, axis2, ship)

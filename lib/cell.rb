@@ -1,7 +1,7 @@
 class Cell
 
 	def initialize
-		@status = :empty
+		@status = Water.new
 	end
 
 	def status
@@ -16,5 +16,20 @@ class Cell
 		@status = water
 	end
 
+	def has_water?
+		@status.is_a? Water
+	end
+
+	def has_been_hit?
+		@status.hit?
+	end
+
+	def has_ship?
+    @status.is_a? Ship
+	end
+
+	def receive_hit
+		@status.receive_hit
+	end
 
 end
