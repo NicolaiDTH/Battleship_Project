@@ -5,7 +5,7 @@ describe Grid do
 
 	let(:grid) { Grid.new }
 	let(:ship) {Ship.new(2)}
-	before(:each) { grid.place_ship_tile(1,2, ship) }
+	before(:each) { grid.board[1][2].place_ship!(ship) }
 
 	context 'starts with' do
 	
@@ -51,8 +51,8 @@ describe Grid do
 
 		it 'can tell a ship it is hit' do
 			expect(ship).to receive(:receive_hit) 
-			# grid.board[1][2].occupant.receive_hit
-			grid.receive_shot(1,2)
+			grid.board[1][2].receive_hit
+			# grid.receive_shot(1,2)
 		end
 	end
 
