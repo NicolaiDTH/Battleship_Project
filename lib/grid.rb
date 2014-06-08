@@ -16,11 +16,9 @@ class Grid
 		ship.size
 	end
 
-	def place_whole_ship(ycoord, xcoord, orientation, ship)
-		# given 0,0, vertical and titanic we change cell state to titanic
+	def place_carrier(start_reference, orientation, ship)
 		if orientation == "vertical"
-			# means differing y ycoords
-			ship_start = ycoord
+			ship_start = start_reference
 			ship_end = ycoord + ship_number_of_tiles(ship) 
 			(ship_start...ship_end).each {|ycoord| board[ycoord][xcoord].place_ship!(ship)}
 		end

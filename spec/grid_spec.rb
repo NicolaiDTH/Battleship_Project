@@ -68,7 +68,7 @@ describe Grid do
 
 		xit 'places a ship either vertically or horizontally (up>down or left>right) on the right no. of tiles' do
 			titanic = Ship.new(5)
-			grid.place_whole_ship(0, 0, "vertical", titanic)
+			grid.place_whole_ship(A1, "vertical", titanic)
 			expect(grid.board[0][0].occupant.class).to eq Ship
 			expect(grid.board[1][0].occupant.class).to eq Ship
 			expect(grid.board[2][0].occupant.class).to eq Ship
