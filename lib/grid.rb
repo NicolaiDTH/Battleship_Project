@@ -2,6 +2,8 @@ require_relative 'ship'
 require_relative 'cell'
 require_relative 'water'
 
+require 'debugger'
+
 class Grid
 
 	def board
@@ -16,16 +18,17 @@ class Grid
 		ship.size
 	end
 
-	def place_carrier(start_reference, orientation, ship)
-		if orientation == "vertical"
-			ship_start = start_reference
-			ship_end = ycoord + ship_number_of_tiles(ship) 
-			(ship_start...ship_end).each {|ycoord| board[ycoord][xcoord].place_ship!(ship)}
+	def place_whole_ship(reference, orientation, ship)
+			# vertically
+		ship.size.times do
+			place_ship_cell(reference, ship)
+
+			reference = reference.next
 		end
 	end
 
-	def place_ship_cell(xcoord,ycoord, cell)
-		board[xcoord][ycoord] = cell
+	def place_ship_cell(starting_point, ship)
+		content_in(starting_point).place_ship!(ship)
 	end
 
 	def translate_char(char)
@@ -50,8 +53,10 @@ class Grid
 	# end
 
 	def print_board
-		board.each {|row| puts row.to_s + "\n"}
-		puts
+		board.each do |row| 
+			board.each { |cell| puts cell.contents.to_s }
+			puts ""
+		end
 	end
 
 	# lay_down_tiles = Proc.new {|axis1| place_ship_cell(axis1, axis2, ship) }
