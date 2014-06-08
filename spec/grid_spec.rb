@@ -79,13 +79,29 @@ describe Grid do
 
 	context 'translating coordinates into array indices' do
 
-		it 'knows that A1 is [0][0]' do
-			expect(grid.content_in("A","1")).to eq grid.board[0][0]
+		it 'knows that A is index 0' do
+			expect(grid.translate_char("A")).to eq 0
 		end
 
-		it 'knows that C5 is [2][4] ' do
-			expect(grid.content_in("C","5")).to eq grid.board[2][4]
-		end 
+		it 'knows that J is index 9' do
+			expect(grid.translate_char("J")).to eq 9
+		end
+
+		it 'knows that 1 is index 0' do
+			expect(grid.translate_num("1")).to eq 0
+		end
+
+		it 'knows that 10 is index 9' do
+			expect(grid.translate_num("10")).to eq 9
+		end
+
+		it 'knows that A1 is [0][0]' do
+			expect(grid.content_in("A1")).to eq grid.board[0][0]
+		end
+
+		# it 'knows that C5 is [2][4] ' do
+		# 	# expect(grid.content_in("C","5")).to eq grid.board[2][4]
+		# end 
 	end
 end
 

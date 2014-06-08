@@ -30,10 +30,16 @@ class Grid
 		board[xcoord][ycoord] = cell
 	end
 
-	def content_in(ycoord, xcoord)
-		# ycoord = "C"
-		# xcoord = "5"
-		board[][]
+	def translate_char(char)
+		%w[A B C D E F G H I J].find_index(char)
+	end
+
+	def translate_num(num)
+		num.to_i - 1
+	end
+
+	def content_in(reference)
+		board[translate_char(reference[0])][translate_num(reference[1])]
 	end
 
 	# def place_ship_tile(xcoord,ycoord, ship)
