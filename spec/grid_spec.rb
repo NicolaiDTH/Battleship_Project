@@ -4,7 +4,7 @@ require 'ship'
 describe Grid do 
 
 	let(:grid) { Grid.new }
-	let(:ship) {Ship.new(2)}
+	let(:ship) { Ship.new(2) }
 	before(:each) { grid.board[1][2].place_ship!(ship) }
 
 	context 'starts with' do
@@ -77,10 +77,19 @@ describe Grid do
 		end
 	end
 
-# context 'ships cannot occupy the same space' do
-	# end
+	context 'translating coordinates into array indices' do
 
+		it 'knows that A1 is [0][0]' do
+			expect(grid.content_in("A","1")).to eq grid.board[0][0]
+		end
+
+		it 'knows that C5 is [2][4] ' do
+			expect(grid.content_in("C","5")).to eq grid.board[2][4]
+		end 
+	end
 end
+
+# context 'ships cannot occupy the same space' do
 
 		# it 'can have a state of occupied' do
 		# 	ship = double :ship

@@ -1,18 +1,11 @@
 require_relative 'ship'
 require_relative 'cell'
+require_relative 'water'
 
 class Grid
 
-	def initialize
-		build_grid
-	end
-
 	def board
-		@board ||= []
-	end
-
-	def build_grid
-		10.times { board << Array.new(10, Cell.new) }
+		@board ||= Array.new(10) { Array.new(10) { Cell.new }}
 	end
 
 	def receive_shot(xcoord,ycoord)
@@ -35,6 +28,12 @@ class Grid
 
 	def place_ship_cell(xcoord,ycoord, cell)
 		board[xcoord][ycoord] = cell
+	end
+
+	def content_in(ycoord, xcoord)
+		# ycoord = "C"
+		# xcoord = "5"
+		board[][]
 	end
 
 	# def place_ship_tile(xcoord,ycoord, ship)
