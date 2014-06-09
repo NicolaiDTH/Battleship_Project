@@ -19,10 +19,16 @@ class Grid
 	end
 
 	def place_whole_ship(reference, orientation, ship)
-			# vertically
-		ship.size.times do
-			place_ship_cell(reference, ship)
-			reference = reference.next
+		if orientation == "vertical"
+			ship.size.times do
+				place_ship_cell(reference, ship)
+				reference = reference.next
+			end
+		else
+			ship.size.times do
+				place_ship_cell(reference, ship)
+				reference = reference[0].next + reference[1]
+			end
 		end
 	end
 

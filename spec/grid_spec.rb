@@ -77,7 +77,7 @@ describe Grid do
 		end
 
 		it 'can place a Vespa horizontally on 5 tiles' do
-			grid.place_whole_ship("A1", "vertical", Vespa.new)
+			grid.place_whole_ship("A1", "horizontal", Vespa.new)
 			expect(grid.board[0][0].contents.class).to eq Vespa
 			expect(grid.board[0][1].contents.class).to eq Vespa
 			expect(grid.board[0][2].contents.class).to eq Vespa
