@@ -88,6 +88,12 @@ describe Grid do
 			expect(grid.board[0][3].contents.class).to eq Vespa
 			expect(grid.board[0][4].contents.class).to eq Vespa
 		end
+
+		it 'refuses to place a ship if it overlaps another' do
+			grid.place_whole_ship("B1", "vertical", Vespa.new)
+			grid.place_whole_ship("A1", "horizontal", Vespa.new)
+			expect(grid.content_in("A1").contents.class).to eq Water
+		end
 	end
 
 	context 'translating coordinates into array indices' do
@@ -115,6 +121,8 @@ describe Grid do
 		it 'knows that C5 is [4][2] ' do
 			expect(grid.content_in("C5")).to eq grid.board[4][2]
 		end 
+
+	
 	end
 end
 
