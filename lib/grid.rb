@@ -18,17 +18,21 @@ class Grid
 		ship.size
 	end
 
-	def place_whole_ship(reference, orientation, ship)
+	def place_whole_ship(starting_point, orientation, ship)
 		if orientation == "vertical"
-			ship.size.times do
-				place_ship_cell(reference, ship)
-				reference = reference.next
-			end
+			place_consective_cells(starting_point, ship)
 		else
 			ship.size.times do
-				place_ship_cell(reference, ship)
-				reference = reference[0].next + reference[1]
+				place_ship_cell(starting_point, ship)
+				starting_point = starting_point[0].next + starting_point[1]
 			end
+		end
+	end
+
+	def place_consective_cells(current_cell, ship)
+		ship.size.times do
+			place_ship_cell(current_cell, ship)
+			current_cell = current_cell.next
 		end
 	end
 
