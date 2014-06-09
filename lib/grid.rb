@@ -83,5 +83,5 @@ class Grid
 
 end	
 
-Grid.new.print_board
+
 
