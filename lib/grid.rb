@@ -40,7 +40,7 @@ class Grid
 	end
 
 	def content_in(reference)
-		board[translate_char(reference[0])][translate_num(reference[1])]
+		board[translate_num(reference[1])][translate_char(reference[0])]
 	end
 
 	# def place_ship_tile(xcoord,ycoord, ship)
