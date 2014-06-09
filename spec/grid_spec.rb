@@ -67,13 +67,22 @@ describe Grid do
 		# 	expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
 		# end
 
-		it 'places a Vespa either vertically (up>down or left>right) on 5 tiles' do
+		it 'can place a Vespa vertically  on 5 tiles' do
 			grid.place_whole_ship("A1", "vertical", Vespa.new)
 			expect(grid.board[0][0].contents.class).to eq Vespa
 			expect(grid.board[1][0].contents.class).to eq Vespa
 			expect(grid.board[2][0].contents.class).to eq Vespa
 			expect(grid.board[3][0].contents.class).to eq Vespa
 			expect(grid.board[4][0].contents.class).to eq Vespa
+		end
+
+		it 'can place a Vespa horizontally on 5 tiles' do
+			grid.place_whole_ship("A1", "vertical", Vespa.new)
+			expect(grid.board[0][0].contents.class).to eq Vespa
+			expect(grid.board[0][1].contents.class).to eq Vespa
+			expect(grid.board[0][2].contents.class).to eq Vespa
+			expect(grid.board[0][3].contents.class).to eq Vespa
+			expect(grid.board[0][4].contents.class).to eq Vespa
 		end
 	end
 

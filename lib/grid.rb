@@ -22,7 +22,6 @@ class Grid
 			# vertically
 		ship.size.times do
 			place_ship_cell(reference, ship)
-
 			reference = reference.next
 		end
 	end
