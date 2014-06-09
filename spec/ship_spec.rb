@@ -39,6 +39,11 @@ describe Ship do
 			ship.report_sink_to(game)
 			#expect game to receive summit when ship.sink = true, how this?  
 		end
+
+		it 'displays itself as "S"' do
+			expect(ship.to_s).to eq "S"
+		end
+
 	end
 end
 

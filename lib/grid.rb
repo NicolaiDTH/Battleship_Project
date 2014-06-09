@@ -1,6 +1,7 @@
 require_relative 'ship'
 require_relative 'cell'
 require_relative 'water'
+require_relative 'subships'
 
 require 'debugger'
 
@@ -73,7 +74,7 @@ class Grid
 
 	def print_board
 		board.each do |row| 
-			board.each { |cell| puts cell.contents.to_s }
+			row.each { |cell| print cell.to_s + " "}
 			puts ""
 		end
 	end
@@ -82,5 +83,5 @@ class Grid
 
 end	
 
-
+Grid.new.print_board
 
