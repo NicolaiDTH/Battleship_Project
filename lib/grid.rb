@@ -2,6 +2,8 @@ require_relative 'ship'
 require_relative 'cell'
 require_relative 'water'
 
+require 'debugger'
+
 class Grid
 
 	def board
@@ -16,24 +18,48 @@ class Grid
 		ship.size
 	end
 
-	def place_whole_ship(ycoord, xcoord, orientation, ship)
-		# given 0,0, vertical and titanic we change cell state to titanic
-		if orientation == "vertical"
-			# means differing y ycoords
-			ship_start = ycoord
-			ship_end = ycoord + ship_number_of_tiles(ship) 
-			(ship_start...ship_end).each {|ycoord| board[ycoord][xcoord].place_ship!(ship)}
+	def place_whole_ship(current_cell, orientation, ship)
+		return unless area_legal?(current_cell, orientation, ship)
+		ship.size.times do
+			place_ship_cell(current_cell, ship)
+			current_cell = get_next_coordinate(current_cell, orientation)
 		end
 	end
 
-	def place_ship_cell(xcoord,ycoord, cell)
-		board[xcoord][ycoord] = cell
+	def area_legal?(current_cell, orientation, ship)
+		ship.size.times do
+			return false if illegal_cell?(current_cell)
+			current_cell = get_next_coordinate(current_cell, orientation)
+		end
 	end
 
-	def content_in(ycoord, xcoord)
-		# ycoord = "C"
-		# xcoord = "5"
-		board[][]
+	def illegal_cell?(current_cell)
+		nonexistent?(current_cell) || content_in(current_cell).contents.class != Water
+	end
+
+	def nonexistent?(cell)
+		content_in(cell).nil?
+	end
+
+	def get_next_coordinate(coordinates, orientation)
+		return coordinates.next if orientation == "vertical" 
+		coordinates[0].next + coordinates[1]
+	end
+
+	def place_ship_cell(starting_point, ship)
+		content_in(starting_point).place_ship!(ship)
+	end
+
+	def translate_char(char)
+		%w[A B C D E F G H I J].find_index(char)
+	end
+
+	def translate_num(num)
+		num.to_i - 1
+	end
+
+	def content_in(reference)
+		board[translate_num(reference[1])][translate_char(reference[0])]
 	end
 
 	# def place_ship_tile(xcoord,ycoord, ship)
@@ -46,8 +72,10 @@ class Grid
 	# end
 
 	def print_board
-		board.each {|row| puts row.to_s + "\n"}
-		puts
+		board.each do |row| 
+			board.each { |cell| puts cell.contents.to_s }
+			puts ""
+		end
 	end
 
 	# lay_down_tiles = Proc.new {|axis1| place_ship_cell(axis1, axis2, ship) }
