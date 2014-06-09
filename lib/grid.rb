@@ -18,23 +18,18 @@ class Grid
 		ship.size
 	end
 
-	def place_whole_ship(starting_point, orientation, ship)
-		if orientation == "vertical"
-			place_consective_cells(starting_point, ship)
-		else
-			ship.size.times do
-				place_ship_cell(starting_point, ship)
-				starting_point = starting_point[0].next + starting_point[1]
-			end
+	def place_whole_ship(current_cell, orientation, ship)
+		ship.size.times do
+			place_ship_cell(current_cell, ship)
+			current_cell = get_next_coordinate(current_cell, orientation)
 		end
 	end
 
-	def place_consective_cells(current_cell, ship)
-		ship.size.times do
-			place_ship_cell(current_cell, ship)
-			current_cell = current_cell.next
-		end
+	def get_next_coordinate(coordinates, orientation)
+		return coordinates.next if orientation == "vertical" 
+		coordinates[0].next + coordinates[1]
 	end
+
 
 	def place_ship_cell(starting_point, ship)
 		content_in(starting_point).place_ship!(ship)

@@ -63,9 +63,13 @@ describe Grid do
 			expect(grid.ship_number_of_tiles(ship)).to eq ship.size
 		end
 
-		# it 'checks whether two coordinates are on the same row, same column, or neither' do
-		# 	expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
-		# end
+		it 'can give the next cell in a vertical line' do
+			expect(grid.get_next_coordinate("A1", "vertical")).to eq "A2"
+		end
+
+		it 'can give the next cell in a horizontal line' do
+			expect(grid.get_next_coordinate("A1", "horizontal")).to eq "B1"
+		end
 
 		it 'can place a Vespa vertically  on 5 tiles' do
 			grid.place_whole_ship("A1", "vertical", Vespa.new)
