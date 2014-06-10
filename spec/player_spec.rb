@@ -21,7 +21,7 @@ describe Player do
 	end
 
 	it 'specifies what ship to place' do
-		expect(brandon).to receive(:user_input)
+		expect(brandon).to receive(:user_input).and_return "wibble"
 		brandon.specify_ship
 	end
 
@@ -31,17 +31,30 @@ describe Player do
 	end
 
 	it 'specifies whether to place it horizontally or vertically' do
-		expect(brandon).to receive(:user_input)
+		expect(brandon).to receive(:user_input).and_return "wibble"
 		brandon.specify_orientation
 	end
 
+	it 'gets user input' do
+		# allow(brandon).to receive(:user_input).and_return "wibble"
+		# expect(STDIN).to receive(:gets).and_return "wibble\n"
+		# brandon.user_input
+
+		allow(brandon).to receive(:gets) {"A1"}
+
+		puts "hello"
+		puts brandon.user_input
+		expect(brandon.user_input).to eq("A1")
+
+	end
+
 	it 'gets all three at once' do
-		brandon.receive_ships(vespa)
-		allow(brandon).to receive(:specify_ship).and_return("vespa")
-		allow(brandon).to receive(:specify_starting_coord).and_return("a1")
-		allow(brandon).to receive(:specify_orientation).and_return("H")
+		brandon.receive_ships(vespa) 
+		allow(brandon).to receive(:user_input).and_return("a1","H","vespa")
 		expect(brandon.grid).to receive(:place_whole_ship).with("A1", "horizontal", vespa)
 		brandon.place_ship
 	end
+
+	it 
 	
 end
