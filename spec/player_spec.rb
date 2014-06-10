@@ -35,12 +35,13 @@ describe Player do
 		brandon.specify_orientation
 	end
 
-	it 'passes the message to the board' do
+	it 'gets all three at once' do
 		brandon.receive_ships(vespa)
-		allow(brandon).to receive(:user_input).and_return("vespa")
-		allow(brandon).to receive(:user_input).and_return("A1")
-		allow(brandon).to receive(:user_input).and_return("H")
+		allow(brandon).to receive(:specify_ship).and_return("vespa")
+		allow(brandon).to receive(:specify_starting_coord).and_return("a1")
+		allow(brandon).to receive(:specify_orientation).and_return("H")
 		expect(brandon.grid).to receive(:place_whole_ship).with("A1", "horizontal", vespa)
+		brandon.place_ship
 	end
 	
 end

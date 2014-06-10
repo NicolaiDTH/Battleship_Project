@@ -1,8 +1,9 @@
 require_relative 'grid'
+require 'debugger'
 
 class Player
 
-	def initialize(grid)
+	def initialize(grid = Grid.new)
 		@grid = grid
 		@ships = []
 	end
@@ -29,6 +30,11 @@ class Player
 
 	def specify_orientation
 		user_input
+	end
+
+	def place_ship
+			@grid.place_whole_ship(specify_starting_coord.capitalize, "horizontal", remaining_ships.find { |ship| ship.class.to_s == specify_ship.capitalize})
+													
 	end
 
 	# def user_input
