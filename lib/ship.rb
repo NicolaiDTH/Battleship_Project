@@ -36,5 +36,9 @@ class Ship
 		@damage > 0
 	end
 
+	def to_s
+		"S"
+	end
+
 end
 

@@ -1,6 +1,7 @@
 require_relative 'ship'
 require_relative 'cell'
 require_relative 'water'
+require_relative 'subships'
 
 require 'debugger'
 
@@ -18,13 +19,32 @@ class Grid
 		ship.size
 	end
 
-	def place_whole_ship(reference, orientation, ship)
-			# vertically
+	def place_whole_ship(current_cell, orientation, ship)
+		return unless area_legal?(current_cell, orientation, ship)
 		ship.size.times do
-			place_ship_cell(reference, ship)
-
-			reference = reference.next
+			place_ship_cell(current_cell, ship)
+			current_cell = get_next_coordinate(current_cell, orientation)
 		end
+	end
+
+	def area_legal?(current_cell, orientation, ship)
+		ship.size.times do
+			return false if illegal_cell?(current_cell)
+			current_cell = get_next_coordinate(current_cell, orientation)
+		end
+	end
+
+	def illegal_cell?(current_cell)
+		nonexistent?(current_cell) || content_in(current_cell).contents.class != Water
+	end
+
+	def nonexistent?(cell)
+		content_in(cell).nil?
+	end
+
+	def get_next_coordinate(coordinates, orientation)
+		return coordinates.next if orientation == "vertical" 
+		coordinates[0].next + coordinates[1]
 	end
 
 	def place_ship_cell(starting_point, ship)
@@ -40,7 +60,7 @@ class Grid
 	end
 
 	def content_in(reference)
-		board[translate_char(reference[0])][translate_num(reference[1])]
+		board[translate_num(reference[1])][translate_char(reference[0])]
 	end
 
 	# def place_ship_tile(xcoord,ycoord, ship)
@@ -54,7 +74,7 @@ class Grid
 
 	def print_board
 		board.each do |row| 
-			board.each { |cell| puts cell.contents.to_s }
+			row.each { |cell| print cell.to_s + " "}
 			puts ""
 		end
 	end

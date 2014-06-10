@@ -1,35 +1,43 @@
+require 'debugger'
+require_relative 'water'
+
 class Cell
 
-	def initialize
-		@contents = Water.new
-	end
+    def initialize
+    	@contents = Water.new
+    end
 
-	def contents
-		@contents
-	end
+	attr_accessor :local_ship_status, :contents
 
 	def place_ship!(ship)
-		@contents = ship
+		self.contents = ship
+		@local_ship_status = "S"
 	end
 
 	def place_water!(water)
-		@contents = water
+		self.contents = water
 	end
 
 	def has_water?
-		@contents.is_a? Water
+		self.contents.is_a? Water
 	end
 
 	def has_been_hit?
-		@contents.hit?
+		self.contents.hit?
 	end
 
 	def has_ship?
-  	 	@contents.is_a? Ship
+  	 	self.contents.is_a? Ship
 	end
 
 	def receive_hit
-		@contents.receive_hit
+		self.contents.receive_hit
+		@local_ship_status=("H")
+	end 
+
+	def to_s
+		return self.contents.to_s if self.contents.class == Water
+		@local_ship_status
 	end
 
 end

@@ -63,17 +63,36 @@ describe Grid do
 			expect(grid.ship_number_of_tiles(ship)).to eq ship.size
 		end
 
-		# it 'checks whether two coordinates are on the same row, same column, or neither' do
-		# 	expect(grid.ship_orientation(0,0,1,0)).to eq :vertical
-		# end
+		it 'can give the next cell in a vertical line' do
+			expect(grid.get_next_coordinate("A1", "vertical")).to eq "A2"
+		end
 
-		xit 'places a Vespa either vertically (up>down or left>right) on 5 tiles' do
+		it 'can give the next cell in a horizontal line' do
+			expect(grid.get_next_coordinate("A1", "horizontal")).to eq "B1"
+		end
+
+		it 'can place a Vespa vertically  on 5 tiles' do
 			grid.place_whole_ship("A1", "vertical", Vespa.new)
 			expect(grid.board[0][0].contents.class).to eq Vespa
-			expect(grid.board[1][0].contents.class).to eq Ship
-			expect(grid.board[2][0].contents.class).to eq Ship
-			expect(grid.board[3][0].contents.class).to eq Ship
-			expect(grid.board[4][0].contents.class).to eq Ship
+			expect(grid.board[1][0].contents.class).to eq Vespa
+			expect(grid.board[2][0].contents.class).to eq Vespa
+			expect(grid.board[3][0].contents.class).to eq Vespa
+			expect(grid.board[4][0].contents.class).to eq Vespa
+		end
+
+		it 'can place a Vespa horizontally on 5 tiles' do
+			grid.place_whole_ship("A1", "horizontal", Vespa.new)
+			expect(grid.board[0][0].contents.class).to eq Vespa
+			expect(grid.board[0][1].contents.class).to eq Vespa
+			expect(grid.board[0][2].contents.class).to eq Vespa
+			expect(grid.board[0][3].contents.class).to eq Vespa
+			expect(grid.board[0][4].contents.class).to eq Vespa
+		end
+
+		it 'refuses to place a ship if it overlaps another' do
+			grid.place_whole_ship("B1", "vertical", Vespa.new)
+			grid.place_whole_ship("A1", "horizontal", Vespa.new)
+			expect(grid.content_in("A1").contents.class).to eq Water
 		end
 	end
 
@@ -99,9 +118,11 @@ describe Grid do
 			expect(grid.content_in("A1")).to eq grid.board[0][0]
 		end
 
-		it 'knows that C5 is [2][4] ' do
-			expect(grid.content_in("C5")).to eq grid.board[2][4]
+		it 'knows that C5 is [4][2] ' do
+			expect(grid.content_in("C5")).to eq grid.board[4][2]
 		end 
+
+	
 	end
 end
 
