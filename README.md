@@ -1,5 +1,7 @@
-Battleships Group Project Readme
-================================
+![Battleship!](http://img2.wikia.nocookie.net/__cb20110706133135/empiresandallies/images/1/1b/Railgun_Battleship.png)
+
+Battleships Group Project
+--
 
 Members:
 
@@ -7,6 +9,17 @@ Faezrah,
 James K,
 James W,
 Nicolai,
-Sasha\
+Sasha
 
-https://www.evernote.com/shard/s329/sh/3ed441d9-87a6-4f8a-aea4-17b0f5e6ea80/921421801f36aef5f91f8bf6b906cba6
+Preliminary notes: https://www.evernote.com/shard/s329/sh/3ed441d9-87a6-4f8a-aea4-17b0f5e6ea80/921421801f36aef5f91f8bf6b906cba6
+
+Instructions:
+--
+
+
+Lessons Learned:
+--
+
+Problems With Code:
+--
+
