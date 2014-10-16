@@ -2,8 +2,10 @@
 
 Battleships Group Project
 --
+This week we were randomly allocated a group consisting of other Makers to create a Battleship Game program.
 
-Members:
+
+The Team Members:
 
 Faezrah,
 James K,
