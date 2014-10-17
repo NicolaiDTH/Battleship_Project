@@ -15,12 +15,15 @@ Sasha
 
 Preliminary notes: https://www.evernote.com/shard/s329/sh/3ed441d9-87a6-4f8a-aea4-17b0f5e6ea80/921421801f36aef5f91f8bf6b906cba6
 
+Collaborators, Responsibilities and Classes were dissected thoroughly.
+
 Instructions:
 --
 
 
 Lessons Learned:
 --
+
 
 Problems With Code:
 --
