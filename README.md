@@ -19,6 +19,7 @@ Collaborators, Responsibilities and Classes were dissected thoroughly.
 
 Instructions:
 --
+Not a bootable program, run 'rspec' in the terminal when in the correct directory to see the tests.
 
 
 Lessons Learned:
