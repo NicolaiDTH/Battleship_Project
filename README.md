@@ -26,8 +26,9 @@ Not a bootable program, run 'rspec' in the terminal when in the correct director
 
 Lessons Learned:
 --
-
+* Further object oriented development!
+* Group work - pair programming!
 
 Problems With Code:
 --
-
+* Incomplete
