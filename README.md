@@ -1,3 +1,5 @@
+![MAlogo!](http://www.makersacademy.com/)
+
 ![Battleship!](http://img2.wikia.nocookie.net/__cb20110706133135/empiresandallies/images/1/1b/Railgun_Battleship.png)
 
 Battleships Group Project
